@@ -11,6 +11,9 @@ Statistic about bikes travel on 3 big cities
 
 ### Files used
 bikeshare.py
+chicago.csv
+new_york_city.csv
+washington.csv
 
 ### Credits
 Udacity information
