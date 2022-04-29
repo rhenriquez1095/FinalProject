@@ -1,3 +1,5 @@
+
+#THIS IS THE PROJECT ABOUT BIKE INFORMATIO
 import time
 import pandas as pd
 import numpy as np
