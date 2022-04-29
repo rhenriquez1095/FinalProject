@@ -24,7 +24,7 @@ def get_filters():
         city = input().lower()
 
         if city not in CITY_DATA.keys():
-            print("\n Oops!!Please enter any of the following cities: Chicago, New York City, Washington ")
+            print("\n Oops!!it seems you enter a diferent city from: Chicago, New York City, Washington ")
 
         print(f"\nYou selected the city: {city.title()} ")
 
