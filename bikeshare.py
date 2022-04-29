@@ -15,14 +15,14 @@ def get_filters():
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
-    print('Hello! Let\'s explore some US bikeshare data!')
+    print('Hello! Let\'s explore some US bikeshare data from a big city!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = ''    
+    city = ''
     while city not in CITY_DATA.keys():
         print("\nSelect one of the cities below:")
         print("\n Chicago, New York City, Washington")
         city = input().lower()
-        
+
         if city not in CITY_DATA.keys():
             print("\n Oops!!Please enter any of the following cities: Chicago, New York City, Washington ")
 
@@ -53,7 +53,7 @@ def get_filters():
 
       print (f"\nYou have selected: {day.title()} ")
 
-        
+
     print(f"\nYou have chosen to view data for city: {city.upper()}, month/s: {month.upper()} and day/s: {day.upper()}.")
     return city, month, day
 
@@ -108,18 +108,18 @@ def time_stats(df):
     common_month = df['month'].mode()[0]
 
     print(f"The most common month: {common_month}")
-    
+
     # TO DO: display the most common day of week
     common_day = df['day_of_week'].mode()[0]
 
     print(f"The most common day: {common_day}")
-    
+
     # TO DO: display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     common_hour = df['hour'].mode()[0]
-    
+
     print(f"\nMost Popular common Hour: {common_hour}")
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -133,7 +133,7 @@ def station_stats(df):
     # TO DO: display most commonly used start station
     common_start = df['Start Station'].mode()[0]
     print(f"The most common station to start is: {common_start}")
-    
+
     # TO DO: display most commonly used end station
     common_end = df['End Station'].mode()[0]
     print(f"The most common station to end is: {common_end}")
@@ -143,7 +143,7 @@ def station_stats(df):
     trip = df['Start To End'].mode()[0]
     print(f"\nThe most frequent trips are from {trip}.")
 
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -158,12 +158,12 @@ def trip_duration_stats(df):
     duration = df['Trip Duration'].sum()
     duration_hr = duration/3600
     print(f"\nThe total travel time is: {duration_hr} hours.")
-    
+
     # TO DO: display mean travel time
     avg_duration = df['Trip Duration'].mean()
     print(f"\nThe average trip takes {avg_duration} seconds.")
-    
-    
+
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -177,21 +177,21 @@ def user_stats(df):
     # TO DO: Display counts of user types
     user_type = df['User Type'].value_counts()
     print(f"There type or users are: {user_type}")
-    
+
     # TO DO: Display counts of gender
     try:
         gender = df['Gender'].value_counts()
         print(f"The genders are: {gender}")
     except:
         print(f"Theres is not Gender information for this city")
-    
-    
+
+
     # TO DO: Display earliest, most recent, and most common year of birth
     try:
         earliest = int(df['Birth Year'].min())
         recent = int(df['Birth Year'].max())
         common_year = int(df['Birth Year'].mode()[0])
-        
+
         print(f"\nThe earliest year of birth is {earliest}. The most recent year of birth is {recent} and the most common year of           birth is {common_year}")
     except:
         print("There are no birth year details in this file.")
@@ -210,8 +210,8 @@ def display_data(df):
     while rdata not in answer:
         print("\nDo you wish to view the raw data? (yes/no)")
         rdata = input().lower()
-        
-        
+
+
         if rdata == "yes":
             print(df.head())
         elif rdata not in answer:
@@ -222,26 +222,26 @@ def display_data(df):
         print("Do you want to see more raw data?")
         counter += 5
         rdata = input().lower()
-        #displays 5 more rows 
+        #displays 5 more rows
         if rdata == "yes":
              print(df[counter:counter+5])
         elif rdata != "yes":
              break
-    
+
     print('-'*40)
-    
+
 def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
 
-        
+
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
         display_data(df)
-        
+
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
